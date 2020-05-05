@@ -1,6 +1,4 @@
-from datetime import datetime
-from io import StringIO
-from typing import Literal, Optional, Union
+from typing import Union
 
 from plantuml2freemind.custom_types import ChildNode, RootNode
 
@@ -26,7 +24,7 @@ def generate_puml_node(node: AnyNode, level: int) -> str:
     return f"{prefix}{style} {text}"
 
 
-def generate_branch(subtree: AnyNode, level) -> str:
+def generate_branch(subtree: ChildNode, level) -> str:
     node = generate_puml_node(subtree, level)
     for child in subtree.children:
         node = concat_pumls(node, generate_branch(child, level + 1))
